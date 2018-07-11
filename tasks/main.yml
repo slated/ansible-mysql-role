@@ -1,0 +1,17 @@
+---
+# tasks file for postgresql
+
+- import_tasks: add_repo.yml
+  become: yes
+  tags: [install, install-mysql-client, install-mysql-server]
+
+# Used in Ansible mysql modules
+- import_tasks: install_client.yml
+  become: yes
+  tags: [install, install-mysql-client]
+  when: mysql_install_client is defined and mysql_install_client
+
+- import_tasks: install_server.yml
+  become: yes
+  tags: [install, install-mysql-server]
+  when: mysql_install_server is defined and mysql_install_server

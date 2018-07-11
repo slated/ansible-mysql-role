@@ -1,0 +1,25 @@
+---
+# Install Official MariaDB repository for debian-based distributions
+
+- name: MySQL install pre-reqs
+  apt:
+    update_cache: yes
+    name: '{{ item }}'
+    state: present
+  with_items:
+    - software-properties-common
+    - python-mysqldb
+
+# - name: ensure mariadb repository public key is installed
+#   command: apt-key adv --recv-key --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8
+#   register: apt_key
+
+- name: Install MariaDB repository key
+  apt_key:
+    id: '0xF1656F24C74CD1D8'
+    keyserver: hkp://keyserver.ubuntu.com:80
+    state: present
+
+- name: Add MariaDB official APT repository
+  apt_repository:
+    repo: 'deb http://nyc2.mirrors.digitalocean.com/mariadb/repo/{{ mysql_mariadb_version }}/ubuntu {{ansible_distribution_release}} main'

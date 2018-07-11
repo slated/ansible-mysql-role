@@ -1,0 +1,8 @@
+---
+- name: Converge
+  hosts: all
+  vars:
+    mysql_install_client: yes
+    mysql_install_server: yes
+  roles:
+    - role: ansible-mysql-roles

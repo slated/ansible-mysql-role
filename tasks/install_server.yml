@@ -1,0 +1,46 @@
+---
+
+- name: Install MySQL server
+  apt:
+    name: mariadb-server
+    state: present
+    update_cache: yes
+
+- name: Configure MySQL server
+  template:
+    src: '{{ item }}.cnf.j2'
+    dest: '/etc/mysql/conf.d/{{ item }}.cnf'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  notify: Restart MySQL
+  with_items:
+    - client
+    - server
+
+- name: Ensure MySQL is started and enabled on boot.
+  service:
+    name: mysqld
+    state: started
+    enabled: yes
+
+- name: Update MySQL root user password
+  mysql_user:
+    name: '{{ mysql_root_user }}'
+    password: '{{ mysql_root_password }}'
+    host_all: yes
+  ignore_errors: yes
+
+- name: Delete anonymous database user
+  mysql_user:
+    login_user: '{{ mysql_root_user }}'
+    login_password: '{{ mysql_root_password }}'
+    user: ''
+    state: 'absent'
+
+- name: Remove test database on first install
+  mysql_db:
+    login_user: '{{ mysql_root_user }}'
+    login_password: '{{ mysql_root_password }}'
+    db: 'test'
+    state: 'absent'

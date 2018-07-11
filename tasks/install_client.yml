@@ -1,0 +1,8 @@
+---
+
+- name: Install MariaDB MySQL client
+  apt:
+    name: mariadb-client
+    state: present
+    update_cache: yes
+    cache_valid_time: 3600
