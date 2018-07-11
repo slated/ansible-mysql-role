@@ -1,7 +1,9 @@
-postgresql
+[![Build Status](https://travis-ci.org/slated/ansible-mysql-roles.svg?branch=master)](https://travis-ci.org/slated/ansible-mysql-roles)
+
+MySQL
 ==========
 
-Add Mysql official Apt repo, optionally install and configure
+Add MySQL official Apt repo, optionally install and configure
 client and/or server. (Server not yet implemented.) By default, only
 the repo is added; see _Role Variables_.
 
