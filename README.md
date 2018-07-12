@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/slated/ansible-mysql-roles.svg?branch=master)](https://travis-ci.org/slated/ansible-mysql-roles)
+[![Build Status](https://travis-ci.org/slated/ansible-mysql-role.svg?branch=master)](https://travis-ci.org/slated/ansible-mysql-role)
 
 MySQL
 ==========
