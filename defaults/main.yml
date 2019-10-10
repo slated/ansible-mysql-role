@@ -1,7 +1,7 @@
 ---
 # Defaults for postgresql
 
-mysql_mariadb_version: '10.2'
+mysql_mariadb_version: '10.4'
 mysql_install_client: no
 mysql_install_server: no
 mysql_bind_address: 'localhost'
